@@ -1,11 +1,18 @@
 public class Server implements DevicesLibrary {
-
     int ServerID;
     protected DevicesLibrary adapter = new AdapterLibraryToAndroid();
     protected DevicesLibrary adapter1 = new AdapterLibraryToIOS();
-    public Server(int serverID) {
+
+    private Server(int serverID) {
         ServerID = serverID;
     }
+
+    public static Server uniqueServer = new Server(1996);
+
+    public static Server getInstanceServer(){
+        return uniqueServer;
+    }
+
     public int getServerID() {
         return ServerID;
     }

@@ -1,22 +1,22 @@
 public class HealthDepartment {
-    String _name;
-    Server _server ;
+    String name;
+    Server server ;
 
     private HealthDepartment(String name, Server server) {
-        this._name = name;
-        this._server= server;
+        this.name = name;
+        this.server= server;
     }
-
-    private static HealthDepartment uniqueHealthDepartment = new HealthDepartment("Health Department",new Server(12345));
+    private static Server s1 = Server.getInstanceServer();
+    private static HealthDepartment uniqueHealthDepartment = new HealthDepartment("Health Department",s1);
 
 
     public static HealthDepartment getInstanceHealthDepartment(){
         return uniqueHealthDepartment;
     }
     public String getName() {
-        return _name;
+        return name;
     }
     public void setName(String name) {
-        this._name = name;
+        this.name = name;
     }
 }
