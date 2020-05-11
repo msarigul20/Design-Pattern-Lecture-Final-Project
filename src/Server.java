@@ -1,4 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 
 public class Server {
     int ServerID;
@@ -21,6 +24,13 @@ public class Server {
         return uniqueServer;
     }
 
+    public String  getTime(){
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSS");
+        LocalDateTime myObj = LocalDateTime.now();
+        System.out.println(myObj.format(myFormatObj));
+        return myObj.format(myFormatObj).toString();
+    }
+
     public int getServerID() {
         return ServerID;
     }
@@ -28,14 +38,15 @@ public class Server {
         ServerID = serverID;
     }
 
-    public void addPatient(String name, int age, String address,String phoneNumber, String location, String conditionInfo,String myDeviceType){
+    public void addPatient(String name, int age, String address,String phoneNumber,
+                           String location, String conditionInfo,String myDeviceType,String lastUpdateTime){
         Patients p = new Patients(name, age, address,
-                new AdapterLibraryToAndroid(phoneNumber, location, conditionInfo, myDeviceType));
+                new AdapterLibraryToAndroid(phoneNumber, location, conditionInfo, myDeviceType,lastUpdateTime));
                 //TODO android VE IOS kısmını ayırt etmek gerekiyor
         patientList.add(p);
     }
     public void printPatientList(){
-        for (int i =0;i<patientList.size();i++){
+        for(int i =0;i<patientList.size();i++){
             patientList.get(i).getPatientInfo();
         }
     }

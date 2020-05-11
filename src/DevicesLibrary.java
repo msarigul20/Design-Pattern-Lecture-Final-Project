@@ -1,4 +1,4 @@
 interface DevicesLibrary {
-    void send(String location,String condition); //setter
+    void send(String location,String condition,String lastUpdateTime); //setter
     String receive(); //getter
 }
