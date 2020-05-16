@@ -1,6 +1,4 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,23 +7,23 @@ public class Test {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         // Test Data
-         Patients testPatient1 = new Patients("İsmail", 23, "Manisa Merkez Arka Sokak No 25 Daire 5",
-                HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+         Patients testPatient1 = new Patients("İsmail", 24, "Manisa Merkez Arka Sokak No 25 Daire 5",
+                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
                         AdapterLibraryToAndroid("5074951858", "in Home",
                         "I am fine.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
         Patients testPatient2 = new Patients("Mustafa", 25, "9 Eylül Caddesi No:126 Daire: 12",
-                HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
                         AdapterLibraryToAndroid("55434085002", "in Shop",
                         "I am OK now.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
-        Patients testPatient3 = new Patients("Emir", 31, "Balçova Sakarya Caddesi No:2 Daire: 4",
-                HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+        Patients testPatient3 = new Patients("Emir", 61, "Balçova Sakarya Caddesi No:2 Daire: 4",
+                HealthDepartment.getInstanceHealthDepartment().server.adapterIos =new
                         AdapterLibraryToIOS("5498001005", "in Factory",
                         "I have a little fewer.", "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient1);
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient2);
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient3);
 
-        try{
+       try{
             for (;;){
                 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>");
                 System.out.println("Hello Welcome Virus Tracking App");
@@ -33,6 +31,7 @@ public class Test {
                 System.out.println("Press 2 to add new patient into patient list: ");
                 System.out.println("Press 3 to learn count of patients: ");
                 System.out.println("Press 4 to update your condition and location info: ");
+                System.out.println("Press 5 to server query age(25-60) - addresses - count: ");
                 System.out.println("Press 99 to quit the program: ");
                 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>");
                 int input = scan.nextInt();
@@ -66,7 +65,7 @@ public class Test {
                         switch (tempMyDeviceType){
                             case 1:
                                 Patients tempPatient = new Patients(tempName, tempAge, tempAddress,
-                                        HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                        HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid=new
                                                 AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
                                                 tempCondition, "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
                                 HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient);
@@ -74,7 +73,7 @@ public class Test {
                                 break;
                             case 2:
                                 Patients tempPatient1 = new Patients(tempName, tempAge, tempAddress,
-                                        HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                        HealthDepartment.getInstanceHealthDepartment().server.adapterIos=new
                                                 AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
                                                 tempCondition, "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
                                 HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient1);
@@ -94,14 +93,14 @@ public class Test {
                                     switch (tempMyDeviceTypeAgain){
                                         case 1:
                                             Patients tempPatient3 = new Patients(tempName, tempAge, tempAddress,
-                                                    HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                    HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid=new
                                                             AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
                                                             tempCondition, "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
                                             HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient3);
                                             System.out.println("SUCCESSFUL! Your patient added patient list.");
                                         case 2:
                                             Patients tempPatient4 = new Patients(tempName, tempAge, tempAddress,
-                                                    HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                    HealthDepartment.getInstanceHealthDepartment().server.adapterIos=new
                                                             AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
                                                             tempCondition, "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
                                             HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient4);
@@ -138,7 +137,9 @@ public class Test {
                             }
                         }
                         break;
-
+                    case 5:
+                        Query query = new serverQuery();
+                        query.doQuery();
                     case 99:
                         System.exit(0);
                     default:
@@ -155,9 +156,7 @@ public class Test {
             main(args);
         }
 
-        for (int i=0 ; i<HealthDepartment.getInstanceHealthDepartment().server.patientList.size();i++){
-            HealthDepartment.getInstanceHealthDepartment().server.patientList.get(i).getPatientInfo();
-        }
+
 
 
     }

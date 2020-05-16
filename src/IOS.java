@@ -29,4 +29,8 @@ public class IOS {
         this.myDeviceType = myDeviceType;
         this.lastUpdateTime=lastUpdateTime;
     }
+
+    public void  getLocation() {
+        System.out.println(this.location);
+    }
 }

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Server {
     int ServerID;
-    protected DevicesLibrary adapter;
+    protected DevicesLibrary adapterAndroid;
 
-    protected DevicesLibrary adapter1 ;
+    protected DevicesLibrary adapterIos ;
     ArrayList<Patients> patientList = new ArrayList<Patients>();
 //    Patients p1 = new Patients("MUSTAFA", 15, "9 eylül", adapter = new AdapterLibraryToAndroid(
 //                "5434085002","in Izmir", "I have a little fewer.", "Android"));
@@ -48,7 +48,7 @@ public class Server {
         }
         if (myDeviceType.trim().toLowerCase()=="ios"){
             Patients p = new Patients(name, age, address,
-                    new AdapterLibraryToAndroid(phoneNumber, location, conditionInfo, myDeviceType,lastUpdateTime));
+                    new AdapterLibraryToIOS(phoneNumber, location, conditionInfo, myDeviceType,lastUpdateTime));
             patientList.add(p);
         }
 

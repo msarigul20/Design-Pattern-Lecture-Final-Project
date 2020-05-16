@@ -3,9 +3,6 @@ public class AdapterLibraryToIOS extends IOS implements DevicesLibrary {
         super(phoneNumber, location, conditionInfo, myDeviceType,lastUpdateTime);
     }
 
-
-
-
     @Override
     public void send(String location,String condition,String lastUpdateTime) {
 
