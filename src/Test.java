@@ -1,3 +1,6 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,8 +19,8 @@ public class Test {
                         "I am OK now.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
         Patients testPatient3 = new Patients("Emir", 31, "Balçova Sakarya Caddesi No:2 Daire: 4",
                 HealthDepartment.getInstanceHealthDepartment().server.adapter=new
-                        AdapterLibraryToAndroid("5498001005", "in Factory",
-                        "I have a little fewer.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+                        AdapterLibraryToIOS("5498001005", "in Factory",
+                        "I have a little fewer.", "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient1);
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient2);
         HealthDepartment.getInstanceHealthDepartment().server.patientList.add(testPatient3);
@@ -56,15 +59,62 @@ public class Test {
                         String tempLocation = scan.nextLine();
                         System.out.println("Please enter condition info of patient: ");
                         String tempCondition = scan.nextLine();
-                        System.out.println("Please enter device type of phone: ");
-                        String tempMyDeviceType = scan.nextLine();
-                        Patients tempPatient = new Patients(tempName, tempAge, tempAddress,
-                                HealthDepartment.getInstanceHealthDepartment().server.adapter=new
-                                        AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
-                                        tempCondition, tempMyDeviceType,HealthDepartment.getInstanceHealthDepartment().server.getTime()));
-                        HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient);
-                        System.out.println("SUCCESSFUL! Your patient added patient list.");
-
+                        System.out.println("Select your device type 'Android' or 'Ios'");
+                        System.out.println("Enter '1' to select 'Android'");
+                        System.out.println("Enter '2' to select 'Ios'");
+                        int tempMyDeviceType = scan.nextInt();
+                        switch (tempMyDeviceType){
+                            case 1:
+                                Patients tempPatient = new Patients(tempName, tempAge, tempAddress,
+                                        HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
+                                                tempCondition, "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+                                HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient);
+                                System.out.println("SUCCESSFUL! Your patient added patient list.");
+                                break;
+                            case 2:
+                                Patients tempPatient1 = new Patients(tempName, tempAge, tempAddress,
+                                        HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
+                                                tempCondition, "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+                                HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient1);
+                                System.out.println("SUCCESSFUL! Your patient added patient list.");
+                                break;
+                            default:
+                                System.err.println("You entered wrong device type !");
+                                System.out.println("Try again by entering '0' or ");
+                                System.out.println("cancel the adding patient by entering '99'.");
+                                System.out.println("What is your choice: ");
+                                int inputDevice = scan.nextInt();
+                                if (inputDevice==0){
+                                    System.out.println("Select your device type 'Android' or 'Ios'");
+                                    System.out.println("Enter '1' to select 'Android'");
+                                    System.out.println("Enter '2' to select 'Ios'");
+                                    int tempMyDeviceTypeAgain = scan.nextInt();
+                                    switch (tempMyDeviceTypeAgain){
+                                        case 1:
+                                            Patients tempPatient3 = new Patients(tempName, tempAge, tempAddress,
+                                                    HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                            AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
+                                                            tempCondition, "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+                                            HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient3);
+                                            System.out.println("SUCCESSFUL! Your patient added patient list.");
+                                        case 2:
+                                            Patients tempPatient4 = new Patients(tempName, tempAge, tempAddress,
+                                                    HealthDepartment.getInstanceHealthDepartment().server.adapter=new
+                                                            AdapterLibraryToAndroid(tempPhoneNumber, tempLocation,
+                                                            tempCondition, "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+                                            HealthDepartment.getInstanceHealthDepartment().server.patientList.add(tempPatient4);
+                                            System.out.println("SUCCESSFUL! Your patient added patient list.");
+                                        default:
+                                            System.err.println("You entered again wrongly. The program returned main menu by canceling addition operation!");
+                                            break;
+                                    }
+                                }else{
+                                    System.out.println("You directed the main menu!");
+                                    break;
+                                }
+                        }
                     case 3:
                         System.out.println("Patient Count: "+HealthDepartment.getInstanceHealthDepartment().server.patientList.size());
                         break;
@@ -104,6 +154,11 @@ public class Test {
             System.err.println("You will return the main menu to select again.");
             main(args);
         }
+
+        for (int i=0 ; i<HealthDepartment.getInstanceHealthDepartment().server.patientList.size();i++){
+            HealthDepartment.getInstanceHealthDepartment().server.patientList.get(i).getPatientInfo();
+        }
+
 
     }
 }
