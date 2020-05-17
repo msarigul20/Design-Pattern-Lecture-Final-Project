@@ -17,7 +17,9 @@ public class Patients {
                 "Patient Name: "+name+"\n"+
                         "Patient Age: "+age+"\n"+
                         "Patient Address: "+address+"\n"+
-                        "Patient Devices Information: "+devicesLibrary.receive()
+                        "Patient Devices Information: "+devicesLibrary.receive(0)
+
+
                 );
     }
 

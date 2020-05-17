@@ -51,8 +51,6 @@ public class Server {
                     new AdapterLibraryToIOS(phoneNumber, location, conditionInfo, myDeviceType,lastUpdateTime));
             patientList.add(p);
         }
-
-
     }
     public void printPatientList(){
         for(int i =0;i<patientList.size();i++){

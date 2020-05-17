@@ -1,4 +1,3 @@
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -32,6 +31,7 @@ public class Test {
                 System.out.println("Press 3 to learn count of patients: ");
                 System.out.println("Press 4 to update your condition and location info: ");
                 System.out.println("Press 5 to server query age(25-60) - addresses - count: ");
+                System.out.println("Press 6 to patient query location - condition info - last update time: ");
                 System.out.println("Press 99 to quit the program: ");
                 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>");
                 int input = scan.nextInt();
@@ -123,7 +123,7 @@ public class Test {
                         String checkPhoneNumber= scan.nextLine();
                         for (int i = 0;i<HealthDepartment.getInstanceHealthDepartment().server.patientList.size();i++){
                             if (HealthDepartment.getInstanceHealthDepartment().server.patientList.
-                                    get(i).devicesLibrary.receive().contains(checkPhoneNumber)){
+                                    get(i).devicesLibrary.receive(0).contains(checkPhoneNumber)){
                                 System.out.println("Welcome "+HealthDepartment.getInstanceHealthDepartment()
                                         .server.patientList.get(i).name);
                                 System.out.println("Please enter your condition info: ");
@@ -140,6 +140,50 @@ public class Test {
                     case 5:
                         Query query = new serverQuery();
                         query.doQuery();
+                    case 6:
+                        FacadePatientQueries facade = new FacadePatientQueries();
+                        System.out.println("You can query patients location, condition info and last update time. ");
+                        System.out.println("1 to query Location");
+                        System.out.println("2 to query Condition Info");
+                        System.out.println("3 to query Last Update Time");
+                        System.out.println("Select your decision if you want,you can select multiple selection.");
+                        System.out.println("For Example: '1' - '2' - '3' - '1,2' - '1,3' - '2,3' or '1,2,3' ");
+                        System.out.println("Enter numbers of queries to apply query: ");
+                        scan.nextLine();
+                        String patientInput = scan.nextLine();
+                        switch (patientInput){
+                            case "1":
+                                facade.queryLocation();
+                                break;
+                            case "2":
+                                facade.queryConditionInfo();
+                                break;
+                            case "3":
+                                facade.queryLastUpdateTime();
+                                break;
+                            case "1,2":
+                                facade.queryLocation();
+                                facade.queryConditionInfo();
+                                break;
+                            case "1,3":
+                                facade.queryLocation();
+                                facade.queryLastUpdateTime();
+                                break;
+                            case "2,3":
+                                facade.queryConditionInfo();
+                                facade.queryLastUpdateTime();
+                                break;
+                            case "1,2,3":
+                                facade.queryLocation();
+                                facade.queryConditionInfo();
+                                facade.queryLastUpdateTime();
+                                break;
+                            default:
+                                System.err.println("You entered wrong selection.Please try again by looking example.");
+                                break;
+                        }
+                        break;
+
                     case 99:
                         System.exit(0);
                     default:
@@ -156,7 +200,8 @@ public class Test {
             main(args);
         }
 
-
+//        FacadePatientQueries facadePatientQueries = new FacadePatientQueries();
+//        facadePatientQueries.queryLocation();
 
 
     }

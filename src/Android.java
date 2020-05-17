@@ -24,9 +24,6 @@ class Android  {
         return result;
     }
 
-//    public Android(String name, int age, String address, String phoneNumber, String location, String conditionInfo, String myDeviceType) {
-//            super(name, age, address);
-//
     public Android(String phoneNumber, String location, String conditionInfo, String myDeviceType,String lastUpdateTime) {
 
         this.phoneNumber = phoneNumber;
