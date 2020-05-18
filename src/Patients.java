@@ -1,26 +1,24 @@
+//Concrete collection consists of Patients.
 public class Patients {
     String name;
     int age;
     String address;
-    DevicesLibrary devicesLibrary;
+    ServerLibrary serverLibrary;
 
-
-    public Patients(String name, int age, String address, DevicesLibrary devicesLibrary) {
+    public Patients(String name, int age, String address, ServerLibrary serverLibrary) {
         this.name = name;
         this.age = age;
         this.address = address;
-        this.devicesLibrary = devicesLibrary;
+        this.serverLibrary = serverLibrary;
 
     }
+    //Print Patient Information with device information.
     public void getPatientInfo(){
         System.out.println(
-                "Patient Name: "+name+"\n"+
+                "Patient Full Name: "+name+"\n"+
                         "Patient Age: "+age+"\n"+
                         "Patient Address: "+address+"\n"+
-                        "Patient Devices Information: "+devicesLibrary.receive(0)
-
-
-                );
+                        "Patient Devices Information: "+ serverLibrary.receive(0)
+        );
     }
-
 }

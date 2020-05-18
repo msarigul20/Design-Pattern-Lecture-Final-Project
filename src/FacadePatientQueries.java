@@ -1,20 +1,22 @@
+//Facade Design Pattern
+//Facade of patient query for user.
 public class FacadePatientQueries {
-    private patientQuery location;
-    private patientQuery condition;
-    private patientQuery lastUpdate;
+    private PatientQuery location;
+    private PatientQuery condition;
+    private PatientQuery lastUpdate;
 
     public FacadePatientQueries(){
         location = new LocationQuery();
         condition = new ConditionInfoQuery();
         lastUpdate = new LastUpdateQuery();
     }
-    public void queryLocation(){
+    public void applyQueryForLocation(){
         location.applyQuery();
     }
-    public void queryConditionInfo(){
+    public void applyQueryForConditionInfo(){
         condition.applyQuery();
     }
-    public void queryLastUpdateTime(){
+    public void applyQueryForLastUpdateTime(){
         lastUpdate.applyQuery();
     }
 
