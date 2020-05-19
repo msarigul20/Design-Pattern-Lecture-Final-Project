@@ -3,22 +3,24 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        // Test Patient Data
-//        Patients testPatient1 = new Patients("İsmail", 24, "Manisa Merkez Arka Sokak No 25 Daire 5",
-//                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
-//                        AdapterLibraryToAndroid("5074951858", "in Home",
-//                        "I am fine.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
-//        Patients testPatient2 = new Patients("Mustafa", 25, "9 Eylül Caddesi No:126 Daire: 12",
-//                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
-//                        AdapterLibraryToAndroid("5434085002", "in Shop",
-//                        "I am OK now.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
-//        Patients testPatient3 = new Patients("Emir", 61, "Balçova Sakarya Caddesi No:2 Daire: 4",
-//                HealthDepartment.getInstanceHealthDepartment().server.adapterIos =new
-//                        AdapterLibraryToIOS("5498001005", "in Factory",
-//                        "I have a little fewer.", "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
-//        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient1);
-//        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient2);
-//        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient3);
+        /*
+        //Test Patient Data
+        Patients testPatient1 = new Patients("İsmail Sel", 24, "Manisa Merkez Arka Sokak No 25 Daire 5",
+                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
+                        AdapterLibraryToAndroid("5074951858", "in Home",
+                        "I am fine.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+        Patients testPatient2 = new Patients("Mustafa Sarıgül", 25, "9 Eylül Caddesi No:126 Daire: 12",
+                HealthDepartment.getInstanceHealthDepartment().server.adapterAndroid =new
+                        AdapterLibraryToAndroid("5434085002", "in Shopping Center",
+                        "I am OK now.", "Android",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+        Patients testPatient3 = new Patients("Mustafa Bozkurt", 61, "Balçova Sakarya Caddesi No:2 Daire: 4",
+                HealthDepartment.getInstanceHealthDepartment().server.adapterIos =new
+                        AdapterLibraryToIOS("5498001005", "in Factory",
+                        "I have a little fewer.", "Ios",HealthDepartment.getInstanceHealthDepartment().server.getTime()));
+        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient1);
+        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient2);
+        HealthDepartment.getInstanceHealthDepartment().server.aggregate.add(testPatient3);
+        */
         //Call all program
         //Used recursive call to fix wrong input in main menu with out data lost.
         MainMenuProgram();
@@ -148,7 +150,7 @@ public class Test {
                              HealthDepartment.getInstanceHealthDepartment().server.iterator.Next()){
 
                             if (HealthDepartment.getInstanceHealthDepartment().server.iterator.CurrentItem().
-                                    serverLibrary.receive(0).contains(checkPhoneNumber)){
+                                    adapterPatternServerLibrary.receive(0).contains(checkPhoneNumber)){
 
                                 System.out.println("Welcome "+HealthDepartment.getInstanceHealthDepartment()
                                         .server.iterator.CurrentItem().name);
@@ -156,7 +158,7 @@ public class Test {
                                 String tempConditionInfo = scan.nextLine();
                                 System.out.println("Please enter your location info: ");
                                 String tempLocationInfo = scan.nextLine();
-                                HealthDepartment.getInstanceHealthDepartment().server.iterator.CurrentItem().serverLibrary.
+                                HealthDepartment.getInstanceHealthDepartment().server.iterator.CurrentItem().adapterPatternServerLibrary.
                                         send(tempLocationInfo, tempConditionInfo,
                                                 HealthDepartment.getInstanceHealthDepartment().server.getTime());
 
@@ -175,9 +177,9 @@ public class Test {
                     case 5:
                         //Query specific server queries without user selection chance.
                         //The serverQuery uses template pattern.
-                        Query query = new serverQuery();
+                        TemplateServerQuery templateServerQuery = new ServerQueries();
                         //Calling the template method.
-                        query.doQuery();
+                        templateServerQuery.doQuery();
                         break;
                     case 6:
                         //Query about patient and its disease by selecting from user.
@@ -248,12 +250,5 @@ public class Test {
             //Call again main menu recursively.
             MainMenuProgram();
         }
-    }//Close bracket of MainMenu
+    }//Close bracket of MainMenuProgram
 }//Close bracket of class Test
-
-
-
-
-
-
-
